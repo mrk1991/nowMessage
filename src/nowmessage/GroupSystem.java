@@ -108,5 +108,18 @@ public class GroupSystem {
         groupView.showGroupList(getGroupList());
     }
     
+    /**
+     * Questo metodo permette di selezionare un gruppo dalla lista
+     * @return il gruppo selezionato
+     */
+    public Group selectGroup(){
+        ArrayList<Group> list = user.getGroupList(); //contiene la lista gruppi
+        Integer positionSelectedGroup; //conterrà la posizione del gruppo selezionato
+        
+        positionSelectedGroup = groupView.showGroupSelector(list);
+              
+        return list.get(positionSelectedGroup-1);
+    }
+    
     
 }

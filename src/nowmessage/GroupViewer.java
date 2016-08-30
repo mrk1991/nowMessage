@@ -6,13 +6,16 @@
 package nowmessage;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
+
+import java.util.Scanner;
 
 /**
  *
  * @author Mrk
  */
 public class GroupViewer {
+    
+    private Scanner input = new Scanner(System.in);
     
     /**
      * Questo metodo permette di mostrare all'utente un gruppo
@@ -34,6 +37,27 @@ public class GroupViewer {
             num+=1;
             showGroup(group);
         }
+    }
+    
+    /**
+     * Questo metodo permette all'utente di selezionare un gruppo dalla lista
+     * @param list indica la lista dei gruppi dell'utente
+     * @return la posizione, all'interno della lista, del gruppo selezionato
+     */
+    public Integer showGroupSelector(ArrayList<Group> list){
+        Integer num;
+        
+        System.out.println("\n**Seleziona Gruppo**");
+        showGroupList(list);
+        System.out.print("\nInserisci il numero del gruppo da selezionare: ");
+        
+        num = input.nextInt();
+        while(num > list.size()){
+            System.out.print("Selezione non valida, reinserisci: ");
+            num = input.nextInt();
+        }
+        
+        return num;
     }
     
 }

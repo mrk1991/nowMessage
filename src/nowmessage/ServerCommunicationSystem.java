@@ -93,7 +93,7 @@ public class ServerCommunicationSystem {
     
     public static Boolean sendMsg(Sending sending){
         ArrayList<Contact> receivers = sending.getReceiverList();
-        Message msg=sending.getMessage();
+        Message msg = sending.getMessage();
         msg.setStateMsg(msg.getStateMsg()+10); // il codice 10 corrisponde a spedito, 11 a spedito e letto dal destinatario
         for (Contact contact: receivers){
             contact.getMessages().add(msg);     // il msg viene aggiunto alle liste di messaggi dei destinatari

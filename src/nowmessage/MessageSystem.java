@@ -18,6 +18,8 @@ public class MessageSystem {
     
     private static MessageSystem messageController;
     
+    private final MessageViewer msgView = new MessageViewer();
+    
     /**
      * constructor
      */
@@ -65,7 +67,7 @@ public class MessageSystem {
      * Questo metodo permette di creare un messaggio multimediale legato ad un elenco di destinatari a partire da un gruppo
      * @param receivers indica il destinatario
      * @param text indica il testo del messaggio
-     * @param attachment indica il media l'allegato
+     * @param attachment indica il media allegato
      * @return il messaggio creato
      */
     public Sending newMessage(Group receivers, String text, Media attachment){
@@ -79,7 +81,7 @@ public class MessageSystem {
      * Questo metodo permette di creare un messaggio multimediale legato ad un elenco di destinatari
      * @param receivers indica i destinatari
      * @param text indica il testo del messaggio
-     * @param attachment indica il media l'allegato
+     * @param attachment indica il media allegato
      * @return il messaggio creato
      */
     public Sending newMessage(ArrayList<Contact> receivers, String text, Media attachment){
@@ -135,5 +137,28 @@ public class MessageSystem {
         
     }
     
+    /**
+     * Questo metodo permette di selezionare il tipo di destinatario di un messaggio
+     * @return il tipo selezionato
+     */
+    public Integer selectTypeOfReceiver(){
+        return msgView.showTypeOfReceiverSelector();
+    }
     
+    /**
+     * Questo metodo richiama la vista dei messaggi per permettere all'utente di scrivere il testo
+     * di un messaggio
+     * @return il testo scritto
+     */
+    public String writeMsgText(){
+        return msgView.showTextBox();
+    }
+    
+    /**
+     * Questo metodo richiama la vista dei messaggi in modo da mostrare il risultato dell'invio
+     * @param result indica il risultato d'invio
+     */
+    public void showSendResult(boolean result){
+        msgView.showSendResult(result);
+    }
 }

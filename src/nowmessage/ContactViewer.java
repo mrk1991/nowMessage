@@ -6,12 +6,16 @@
 package nowmessage;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
+import java.util.Scanner;
 
 /**
  *
  * @author Mrk
  */
 public class ContactViewer {
+    
+    private Scanner input = new Scanner(System.in);
     
     /**
      * Questo metodo permette di mostrare all'utente un contatto
@@ -33,7 +37,32 @@ public class ContactViewer {
             num+=1;
             showContact(contact);
         }
-        //System.out.println(list);
+    }
+    
+    /**
+     * Questo metodo permette all'utente di selezionare uno o più contatti dalla rubrica
+     * @param list indica la rubrica
+     * @return la lista delle posizioni occupate in rubrica dai contatti selezionati
+     */
+    public ArrayList<Integer> showContactSelector(ArrayList<Contact> list){
+        ArrayList<Integer> positionList = new ArrayList();
+        Integer num;
+        
+        System.out.println("\n**Seleziona contatti**");
+        showContactList(list);
+        System.out.print("\nInserisci i numeri dei contatti da selezionare separati da uno spazio: ");
+        
+        //serve per dividere l'input in token, così si possono estrarre i numeri inseriti dall'utente.
+        StringTokenizer st = new StringTokenizer(input.nextLine()," ");
+
+        do{
+            num = Integer.parseInt(st.nextToken()); //estrae dal token il numero intero inserito dall'utente
+            if(num <= list.size()){ //se il numero corrisponde alla posizione di un contatto in rubrica...
+                positionList.add(num); //...allora lo aggiunge alla selezione, altrimenti lo scarta
+            }
+        }while(st.hasMoreTokens()); //continua fino a che ci sono token da controllare
+        
+        return positionList;
     }
     
 }

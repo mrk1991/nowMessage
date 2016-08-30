@@ -122,6 +122,24 @@ public class ContactSystem {
         contactView.showContactList(getContactList());
     }
     
+    /**
+     * Questo metodo permette di selezionare uno o più contatti dalla rubrica
+     * @return la lista dei contatti selezionati
+     */
+    public ArrayList<Contact> selectContact(){
+        ArrayList<Contact> list = user.getContactList(); //contiene la rubrica
+        ArrayList<Integer> positionSelectedContact; //conterrà le posizioni dei contatti selezionati
+        ArrayList<Contact> contactSelected = new ArrayList(); //conterrà i contatti selezionati
+        
+        positionSelectedContact = contactView.showContactSelector(list);
+        
+        for(Integer num : positionSelectedContact){
+            contactSelected.add(list.get(num-1));
+        }
+                
+        return contactSelected;
+    }
+    
     
     
 }

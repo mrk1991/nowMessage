@@ -59,15 +59,29 @@ public class MainSystem {
             input = mainView.showFunction();
         
             switch(input){
-                case 1: //RICHIAMA CONTROLLER CONTATTI PER STAMPARNE LA LISTA E LE OPZIONI DI GESTIONE;
+                case 1: //RICHIAMA CONTROLLER CONTATTI PER STAMPARNE LA LISTA
                         //System.out.println(contactList);
                         contactController.showContactList();
                         break;
-                case 2: //RICHIAMA CONTROLLER GRUPPI PER STAMPARNE LA LISTA E LE OPZIONI DI GESTIONE;
+                case 2: //RICHIAMA CONTROLLER GRUPPI PER STAMPARNE LA LISTa
                         //System.out.println(groupList);
                         groupController.showGroupList();
                         break;
                 case 3: //RICHIAMA CONTROLLER MESSAGGI PER CREARNE E POI INVIARNE UNO;
+                        switch(msgController.selectTypeOfReceiver()){
+                            case 1: //uno o più contatti
+                                    ArrayList<Contact> contactReceivers = contactController.selectContact();
+                                    String text = msgController.writeMsgText();
+                                    Sending sending = msgController.newMessage(contactReceivers, text);
+                                    msgController.showSendResult(msgController.sendMessage(sending));
+                                    break;
+                            case 2: //un gruppo
+                                    Group groupReceiver = groupController.selectGroup();
+                                    String text2 = msgController.writeMsgText();
+                                    Sending sending2 = msgController.newMessage(groupReceiver, text2);
+                                    msgController.showSendResult(msgController.sendMessage(sending2));
+                                    break;
+                        }
                         break;
                 case 0: System.out.println("\n**Esci**");
                         exit = false;
