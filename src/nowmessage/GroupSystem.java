@@ -43,17 +43,26 @@ public class GroupSystem {
     }
     
     /**
-     * Questo metodo permette di aggiungere un gruppo nella lista gruppi dell'utente
+     * Questo metodo permette di creare e aggiungere un gruppo nella lista gruppi dell'utente
+     * @param name indica il nome del gruppo
+     * @return la lista dei gruppi aggiornata
+     */
+    public ArrayList<Group> newGroup(String name){
+        Group newGroup = new Group(name);
+        user.getGroupList().add(newGroup);
+        return user.getGroupList();
+    }
+    
+    /**
+     * Questo metodo permette di creare e aggiungere un gruppo nella lista gruppi dell'utente
      * @param name indica il nome del gruppo
      * @param photo indica la foto del gruppo
      * @return la lista dei gruppi aggiornata
      */
-    public ArrayList newGroup(String name, Image photo){
-        Group newGroup;
-        //1- richiamerà il costruttore di Group
-        //2- aggiornerà la groupList del LocalUser
-        //3- renderà la lista aggiornata dei gruppi
-        return null; //giusto per indicare qualcosa
+    public ArrayList<Group> newGroup(String name, Image photo){
+        Group newGroup = new Group(name, photo);
+        user.getGroupList().add(newGroup);
+        return user.getGroupList();
     }
     
     /**
@@ -69,10 +78,13 @@ public class GroupSystem {
      * @return la lista gruppi aggiornata
      */
     public ArrayList<Group> deleteGroup(Group group){
+        if(user.getGroupList().contains(group)){
+            user.getGroupList().remove(group);
+        }
         //1- si cerca il gruppo nella groupList del LocalUser
         //2- lo si rimuove
         //3- si rende la lista gruppi aggiornata
-        return null; //giusto per indicare qualcosa
+        return user.getGroupList();
     }
     
     /**

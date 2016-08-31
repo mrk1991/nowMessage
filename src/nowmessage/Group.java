@@ -23,7 +23,7 @@ public class Group {
      */
     public Group(String name) {
         this.name = name;
-        this.contactList = null;
+        this.contactList = new ArrayList<>();
     }
     
     /**
@@ -34,7 +34,7 @@ public class Group {
     public Group(String name, Image photo) {
         this.name = name;
         this.photo = photo;
-        this.contactList = null;
+        this.contactList = new ArrayList<>();
     }
     
     //methods
