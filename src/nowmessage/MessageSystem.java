@@ -105,8 +105,9 @@ public class MessageSystem {
      * @return boolean 
      */
     public Boolean sendMessage(Sending sending){
+        ServerCommunicationSystem server = ServerCommunicationSystem.getInstance();
         
-        return true;
+        return server.sendMsg(sending);
     }
     
     /**

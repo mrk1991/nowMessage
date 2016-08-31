@@ -26,6 +26,7 @@ public class Contact {
     public Contact(String email, Image photo) {
         this.email = email;
         this.photo = photo;
+        this.messages = new ArrayList<>();
     }
     
     /**
