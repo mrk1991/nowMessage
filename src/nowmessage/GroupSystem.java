@@ -17,10 +17,8 @@ import java.util.ArrayList;
 public class GroupSystem {
     
     private static GroupSystem groupController; //indica una istanza della stessa classe GroupSystem
-    
-    private final LocalUser user = LocalUser.getInstance();
-    
-    private final GroupViewer groupView = new GroupViewer();
+    private final GroupViewer groupView= new GroupViewer();
+    private final ServerCommunicationSystem server = ServerCommunicationSystem.getInstance();
     
     /**
      * Constructor
@@ -47,10 +45,12 @@ public class GroupSystem {
      * @param name indica il nome del gruppo
      * @return la lista dei gruppi aggiornata
      */
-    public ArrayList<Group> newGroup(String name){
+    public void newGroup(String name){
+        LocalUser user = server.getLocalUser();
+    
         Group newGroup = new Group(name);
         user.getGroupList().add(newGroup);
-        return user.getGroupList();
+        
     }
     
     /**
@@ -59,10 +59,11 @@ public class GroupSystem {
      * @param photo indica la foto del gruppo
      * @return la lista dei gruppi aggiornata
      */
-    public ArrayList<Group> newGroup(String name, Image photo){
+    public void newGroup(String name, Image photo){
+        
+        LocalUser user = server.getLocalUser();
         Group newGroup = new Group(name, photo);
         user.getGroupList().add(newGroup);
-        return user.getGroupList();
     }
     
     /**
@@ -78,6 +79,8 @@ public class GroupSystem {
      * @return la lista gruppi aggiornata
      */
     public ArrayList<Group> deleteGroup(Group group){
+        
+        LocalUser user = server.getLocalUser();
         if(user.getGroupList().contains(group)){
             user.getGroupList().remove(group);
         }
@@ -110,6 +113,7 @@ public class GroupSystem {
      * @return la lista gruppi del LocalUser
      */
     public ArrayList<Group> getGroupList(){
+        LocalUser user = server.getLocalUser();
         return user.getGroupList();
     }
     
@@ -117,6 +121,7 @@ public class GroupSystem {
      * Questo metodo richiama la vista dei gruppi per permetterne di visualizzarne la lista
      */
     public void showGroupList(){
+                
         groupView.showGroupList(getGroupList());
     }
     
@@ -125,6 +130,7 @@ public class GroupSystem {
      * @return il gruppo selezionato
      */
     public Group selectGroup(){
+        LocalUser user = server.getLocalUser();
         ArrayList<Group> list = user.getGroupList(); //contiene la lista gruppi
         Integer positionSelectedGroup; //conterrà la posizione del gruppo selezionato
         

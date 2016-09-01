@@ -93,8 +93,15 @@ public class Group {
      */
     @Override
     public String toString(){
-        return "\tNome: " + name
-                + "\tFoto: " + photo.getName();
+        
+        String string = "\tNome: " + name;
+        if (photo != null){
+            string = string + "\tFoto: " + photo.getName();
+        } else {
+            string = string + "\tFoto: \t";
+        }
+        return string;
+                
     }
     
 }
