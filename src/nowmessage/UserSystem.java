@@ -16,8 +16,6 @@ public class UserSystem {
     
     private static UserSystem userController;
     
-    private final LocalUser user = LocalUser.getInstance();
-    
     private final UserViewer userView = new UserViewer();
     
     /**
@@ -72,6 +70,7 @@ public class UserSystem {
      * Questo metodo richiama la vista dello user per poterne visualizzare le informazioni del profilo
      */
     public void showUser(){
+        LocalUser user = LocalUser.getInstance();
         userView.showUser(user);
     }
 }

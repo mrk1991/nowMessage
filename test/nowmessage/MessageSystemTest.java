@@ -106,8 +106,10 @@ public class MessageSystemTest {
         Media attachment = new Image("Foto",100.0,100.0);
         MessageSystem instance = MessageSystem.getInstance();
         Sending expResult = new Sending(receivers.getContactList(),new Message("Prova2",attachment));
+        expResult.getMessage().setStateMsg(0);
         Sending result = instance.newMessage(receivers, text, attachment);
         
+        assertEquals(expResult,result);
     }
 
   

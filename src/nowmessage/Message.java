@@ -5,6 +5,8 @@
  */
 package nowmessage;
 
+import java.util.Objects;
+
 /**
  *
  * @author Mrk
@@ -97,5 +99,40 @@ public class Message {
                 + "\nAllegato: " + attachment
                 + "\nStato: " + stateMsg;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + Objects.hashCode(this.text);
+        hash = 43 * hash + Objects.hashCode(this.attachment);
+        hash = 43 * hash + Objects.hashCode(this.stateMsg);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Message other = (Message) obj;
+        if (!Objects.equals(this.text, other.text)) {
+            return false;
+        }
+        if (!Objects.equals(this.attachment, other.attachment)) {
+            return false;
+        }
+        if (!Objects.equals(this.stateMsg, other.stateMsg)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }
