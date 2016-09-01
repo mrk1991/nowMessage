@@ -18,8 +18,6 @@ public class MediaSystem {
     
     private static MediaSystem mediaController;
     
-    private final LocalUser user = LocalUser.getInstance();
-    
     private final MediaViewer mediaView = new MediaViewer();
     
     /**
@@ -61,6 +59,7 @@ public class MediaSystem {
      * @return la lista media del LocalUser
      */
     public ArrayList<Media> getMediaList(){
+        LocalUser user = LocalUser.getInstance();
         return user.getMediaList();
     }
     

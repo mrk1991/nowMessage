@@ -61,12 +61,11 @@ public class GroupSystemTest {
         
         String name = "AMM-2014"; //nome del nuovo gruppo
         GroupSystem instance = GroupSystem.getInstance(); //richiamo istanza di GroupSystem
+        instance.newGroup(name); //creo nuovo gruppo e lo assegno al groupList del local user
+        int expResult = lu.getGroupList().size()-1; //calcolo la lunghezza della lista dei gruppi
         
-        ArrayList<Group> expResult = lu.getGroupList(); //carico i gruppi dell'utente corrente
-        expResult.add(new Group(name)); /*aggiungo manualmente al risultato atteso, il nuovo gruppo
-                                          che voglio creare*/
-        ArrayList<Group> result = instance.newGroup(name);
-        assertEquals(expResult, result);
+        assertEquals(lu.getGroupList().get(expResult).getName(),"AMM-2014");//verifico che l'ultimo gruppo si quello appena inserito
+        
     }
 
     /**
@@ -83,11 +82,13 @@ public class GroupSystemTest {
         Image photo = new Image("AMM-2014",200.0,200.0); //foto del nuovo gruppo
         GroupSystem instance = GroupSystem.getInstance(); //richiamo istanza di GroupSystem
         
-        ArrayList<Group> expResult = lu.getGroupList(); //carico i gruppi dell'utente corrente
-        expResult.add(new Group(name, photo)); /*aggiungo manualmente al risultato atteso,
-                                                 il nuovo gruppo che voglio creare*/
-        ArrayList<Group> result = instance.newGroup(name, photo);
-        assertEquals(expResult, result);
+        
+        instance.newGroup(name, photo);
+        int expResult = lu.getGroupList().size()-1; //calcolo la lunghezza della lista dei gruppi
+        
+        assertEquals(lu.getGroupList().get(expResult).getPhoto(),photo);
+        
+        //assertEquals(expResult, result);
     }
 
     /**
@@ -104,11 +105,12 @@ public class GroupSystemTest {
         
         GroupSystem instance = GroupSystem.getInstance();
         
-        ArrayList<Group> expResult = lu.getGroupList(); //carico i gruppi dell'utente corrente
-        expResult.remove(group); //elimino manualmente il gruppo
-        
-        ArrayList<Group> result = instance.deleteGroup(group);
+        boolean expResult = true;
+                
+        boolean result = instance.deleteGroup(group);
         assertEquals(expResult, result);
+        assertEquals(lu.getGroupList().indexOf(group),-1);
+        
 
     }
    

@@ -6,6 +6,7 @@
 package nowmessage;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -41,4 +42,35 @@ public class Sending {
     public String toString(){
         return "\n"+this.receiverList.toString()+"\n"+this.message.toString();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.receiverList);
+        hash = 59 * hash + Objects.hashCode(this.message);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Sending other = (Sending) obj;
+        if (!Objects.equals(this.receiverList, other.receiverList)) {
+            return false;
+        }
+        if (!Objects.equals(this.message, other.message)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
