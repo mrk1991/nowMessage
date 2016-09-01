@@ -94,7 +94,7 @@ public class GroupSystemTest {
     /**
      * Test of deleteGroup method, of class GroupSystem.
      */
-    //@Test
+    @Test
     public void testDeleteGroup() {
         System.out.println("deleteGroup");
         
@@ -105,11 +105,12 @@ public class GroupSystemTest {
         
         GroupSystem instance = GroupSystem.getInstance();
         
-        ArrayList<Group> expResult = lu.getGroupList(); //carico i gruppi dell'utente corrente
-        expResult.remove(group); //elimino manualmente il gruppo
-        
-        ArrayList<Group> result = instance.deleteGroup(group);
+        boolean expResult = true;
+                
+        boolean result = instance.deleteGroup(group);
         assertEquals(expResult, result);
+        assertEquals(lu.getGroupList().indexOf(group),-1);
+        
 
     }
    

@@ -78,16 +78,17 @@ public class GroupSystem {
      * @param group indica il gruppo da eliminare
      * @return la lista gruppi aggiornata
      */
-    public ArrayList<Group> deleteGroup(Group group){
+    public boolean deleteGroup(Group group){
         
         LocalUser user = server.getLocalUser();
         if(user.getGroupList().contains(group)){
             user.getGroupList().remove(group);
+            return true;
         }
         //1- si cerca il gruppo nella groupList del LocalUser
         //2- lo si rimuove
-        //3- si rende la lista gruppi aggiornata
-        return user.getGroupList();
+        //3- si rende true se è avvenuta la cancellazione altrimenti false
+        return false;
     }
     
     /**
